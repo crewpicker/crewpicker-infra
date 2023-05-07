@@ -2,6 +2,6 @@ module "autopilot" {
   source = "./modules/autopilot"
 
   name    = "crewpilot-1"
-  project = "crewpicker"
+  project = local.project
   region  = "europe-north1"
 }

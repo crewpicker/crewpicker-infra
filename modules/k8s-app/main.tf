@@ -64,7 +64,6 @@ spec:
       paths:
       - path: /
         pathType: Prefix
-        h
         backend:
           service:
             name: ${var.name}-${var.release}
