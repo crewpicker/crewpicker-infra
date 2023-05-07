@@ -28,7 +28,8 @@ resource "google_service_account_iam_binding" "gha_id_mapping" {
   service_account_id = google_service_account.gha.name
   role = "roles/iam.workloadIdentityUser"
   members = [
-    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.gha.name}/attribute.repository/crewpicker/crewpicker-infra"
+    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.gha.name}/attribute.repository/crewpicker/crewpicker",
+    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.gha.name}/attribute.repository/crewpicker/crewpicker-infra",
   ]
 }
 
