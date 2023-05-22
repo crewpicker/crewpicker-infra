@@ -1,0 +1,29 @@
+# deploy instances [tk81-crewpicker, rmr-crewpicker] to crewpilot-1 GKE cluster
+name: deploy-pro
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-tk81-crewpicker:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - id: gcloud-auth
+        uses: google-github-actions/auth@v1
+        with:
+          workload_identity_provider: projects/${{ secrets.GCP_PROJECT }}/locations/global/workloadIdentityPools/crewpicker-gha
+          service_account: gha-deployer@crewpicker.iam.gserviceaccount.com
+      - id: gke-creds
+        uses: 'google-github-actions/get-gke-credentials@v1'
+        with:
+          cluster_name: crewpicker
+          location: europe-north1-a
+      - uses: helmfile/helmfile-action@v1
+        with:
+          helmfile-args: apply
+          helmfile-version: v0.153.1
+          helm-version: v3.12.0
