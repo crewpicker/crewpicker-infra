@@ -2,10 +2,14 @@
 name: deploy-pro
 
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      container_image:
+        type: string
+        required: true
 
 jobs:
-  deploy-tk81-crewpicker:
+  deploy-crewpicker:
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -24,6 +28,6 @@ jobs:
           location: europe-north1-a
       - uses: helmfile/helmfile-action@v1.0.0
         with:
-          helmfile-args: apply
+          helmfile-args: apply --set container.image=${{ inputs.container_image }}
           helmfile-version: v0.153.1
           helm-version: v3.12.0

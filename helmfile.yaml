@@ -1,7 +1,4 @@
 releases:
-- name: tk81-crewpicker
+- name: tk81
   namespace: crewpicker
   chart: ./applications/crewpicker
-  set:
-  - name: rbac.create
-    value: false
