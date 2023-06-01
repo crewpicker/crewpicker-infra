@@ -1,0 +1,4 @@
+releases:
+- name: tk81
+  namespace: crewpicker
+  chart: ./applications/crewpicker
