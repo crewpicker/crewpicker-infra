@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          repository: crewpicker/crewpicker-infra
       - id: gcloud-auth
         uses: google-github-actions/auth@v1
         with:
