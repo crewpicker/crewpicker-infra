@@ -6,13 +6,13 @@ metadata:
     {{- include "labels" . | nindent 4 }}
 spec:
   rules:
-  - host: "${var.hostname}"
+  - host: {{ .Release.Name }}.crewpicker.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: ${var.name}-${var.release}
+            name: {{ .Release.Name }}
             port:
               number: 80
