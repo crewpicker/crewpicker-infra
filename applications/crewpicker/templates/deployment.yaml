@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "labels" . | nindent 4 }}
+        {{- include "labels" . | nindent 8 }}
     spec:
       containers:
       - name: crewpicker
