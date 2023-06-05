@@ -2,11 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Release.Name }}
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: {{ .Release.Name }}
+    networking.gke.io/managed-certificates: {{ .Release.Name }}
+    kubernetes.io/ingress.class: "gce"
   labels:
     {{- include "labels" . | nindent 4 }}
 spec:
   rules:
-  - host: {{ .Release.Name }}.crewpicker.io
+  - host: {{ include "hostname" . }}
     http:
       paths:
       - path: /

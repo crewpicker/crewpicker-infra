@@ -1,0 +1,9 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    {{- include "labels" . | nindent 4 }}
+spec:
+  domains:
+  - {{ include "hostname" . }}

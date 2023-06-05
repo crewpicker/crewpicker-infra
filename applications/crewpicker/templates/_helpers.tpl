@@ -34,9 +34,9 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "labels" -}}
-{{- if .Values.owner }}
+{{- if .Values.owner -}}
 owner: {{ .Values.owner }}
-{{- end }}
+{{ end -}}
 helm.sh/chart: {{ include "chart" . }}
 {{ include "selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -63,4 +63,8 @@ Create the name of the service account to use
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
+{{- end }}
+
+{{- define "hostname" -}}
+{{ .Release.Name }}.crewpicker.io
 {{- end }}

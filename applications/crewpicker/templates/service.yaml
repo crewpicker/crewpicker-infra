@@ -8,6 +8,6 @@ spec:
   selector:
     {{- include "selectorLabels" . | nindent 4 }}
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
