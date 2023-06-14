@@ -22,3 +22,6 @@ spec:
         envFrom:
         - secretRef:
             name: {{ .Release.Name }}
+        env:
+        - name: CREWPICKER_INSTANCE
+          value: {{ .Release.Name }}
