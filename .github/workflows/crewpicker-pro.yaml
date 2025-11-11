@@ -27,8 +27,6 @@ jobs:
         uses: 'google-github-actions/get-gke-credentials@v1'
         with:
           cluster_name: projects/crewpicker/locations/europe-north1/clusters/crewpilot-1
-      - uses: helmfile/helmfile-action@v1.0.0
+      - uses: helmfile/helmfile-action@v2.0.5
         with:
           helmfile-args: apply --set container.image=${{ inputs.container_image }},tk81_database_url=${{ secrets.TK81_DB_URL }},rmr_database_url=${{ secrets.RMR_DB_URL }}
-          helmfile-version: v0.153.1
-          helm-version: v3.12.0
