@@ -2,3 +2,6 @@ releases:
 - name: tk81
   namespace: crewpicker
   chart: ./applications/crewpicker
+- name: rmr
+  namespace: crewpicker
+  chart: ./applications/crewpicker
