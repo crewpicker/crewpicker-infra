@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-migrations
+  annotations:
+    "helm.sh/hook": pre-upgrade
+    "helm.sh/hook-weight": "-1"
+    "helm.sh/hook-delete-policy": before-hook-creation
+  labels:
+    {{- include "labels" . | nindent 4 }}
+    app.kubernetes.io/managed-by: Helm
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    metadata:
+      labels:
+        {{- include "labels" . | nindent 8 }}
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: migrations
+        image: {{ .Values.container.image }}
+        command: ["bundle", "exec", "rails", "db:migrate"]
+        envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}
+        env:
+        - name: CREWPICKER_INSTANCE
+          value: {{ .Release.Name }}
+        - name: RAILS_ENV
+          value: "production"
