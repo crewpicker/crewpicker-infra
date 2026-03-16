@@ -6,10 +6,14 @@ terraform {
       source  = "gavinbunney/kubectl"
       version = ">= 1.7.0"
     }
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 6.0"
+    }
   }
 
   backend "gcs" {
-    bucket  = "83bb9cbede83ff98-bucket-tfstate"
-    prefix  = "terraform/state"
+    bucket = "83bb9cbede83ff98-bucket-tfstate"
+    prefix = "terraform/state"
   }
 }
